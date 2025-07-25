@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <main>
+        <!-- Title -->
+        <header>
+            <h1 class="text-3xl font-bold text-center">To-Do-List</h1>
+        </header>
+        
+        <!-- Form Todo -->
+        <form>
+            <div>
+                <label for="todo-input" class="block text-sm font-medium text-gray-700">Add task</label>
+                <input type="text" id="todo-input" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" placeholder="Enter your task here">
+            </div>
+            <div>
+                <label for="todo-date" class="block text-sm font-medium text-gray-700">Date</label>
+                <input type="date" id="todo-date" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" placeholder="Enter your task here">
+            </div>
+            <div>
+                <button type="button" class="px-[16px] py-[8px] bg-blue-500 hover:bg-blue-600 text-white rounded-[8px] text-center" onclick="addTask()">+</button>
+            </div>
+        </form>
+
+        <!-- List Todo -->
+        <section>
+            <div class="action-container pt-[16px] pb-[16px]">
+                <button class="px-[16px] py-[8px] bg-gray-500 hover:bg-gray-600 text-white rounded-[8px] text-center">Filter</button>
+                <button type="button" class="px-[16px] py-[8px] bg-red-500 hover:bg-red-600 text-white rounded-[8px] text-center" onclick="deleteAllTasks()">Delete All</button>
+            </div>
+
+            <header>
+                <h1 class="text-1xl font-bold">Tasks List</h1>
+            </header>
+
+            <div id="todo-list">
+                <p>No tasks available</p>
+                <!-- <li class="todo-item flex justify-between items-center p-4 border-b-1">
+                    <span>Sample Task</span>
+                    <div>
+                        <button class="px-[10px] py-[2px] bg-green-500 hover:bg-green-600 text-white rounded-[4px] text-center">Edit</button>
+                        <button class="px-[10px] py-[2px] bg-red-500 hover:bg-red-600 text-white rounded-[4px] text-center">Delete</button>
+                    </div>
+                </li> -->
+            </div>
+        </section>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+</html>
