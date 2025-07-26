@@ -1,11 +1,26 @@
 main{
-    width: 50%;
+    /* width: 50%;
     height: 100vh;
     justify-self: center;
-    align-content: center;
+    align-content: center; */
+    max-width: 700px;
+    margin: 40px auto;
+    /* background: #fff; */
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    padding: 32px 24px;
 }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: #38bdf8; warna sky-400 */
+}
+
 form{
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     padding: 16px;
     border-radius: 8px;
     display: flex;
@@ -27,3 +42,11 @@ form{
     border: 1px solid #e5e7eb;
     border-radius: 8px;
 }
+
+/* .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+} */
