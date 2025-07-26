@@ -9,14 +9,16 @@ function addTask(){
     
     if(taskInput.value === "" || dateInput.value === ""){
         alert("Masukkan Task & Tanggalnya!");
+    }else if(taskInput.value.length > 32){
+        alert("Task tidak boleh lebih dari 32 karakter!");
+
     }else{
         tasks.push({
             title: taskInput.value,
             date: dateInput.value,
             completed: false
         });
-        console.log("Task added:", taskInput.value, "Date:", dateInput.value);
-        console.log("Current tasks:", tasks);
+       
 
         renderTasks();
         // Clear input fields after adding the task
@@ -35,19 +37,32 @@ function deleteTask(index){
     const confirmDelete = confirm("Apakah Anda yakin ingin menghapus task ini?");
     if(confirmDelete){
         tasks.splice(index, 1);
-        console.log("Task deleted at index:", index);
+        
         renderTasks();
     }
 }
 
-function deleteAllTasks(){
-    const confirmDeleteAll = confirm("Apakah Anda yakin ingin menghapus semua task?");
-    if(confirmDeleteAll){
-        tasks = [];
-        console.log("All tasks deleted");
-        renderTasks();
-    }
+// function deleteAllTasks(){
+//     const confirmDeleteAll = confirm("Apakah Anda yakin ingin menghapus semua task?");
+//     if(confirmDeleteAll){
+//         tasks = [];
+//         
+//         renderTasks();
+//     }
 
+// }
+function deleteAllTasks(){
+    const modal = document.getElementById("confirm-modal");
+    modal.classList.remove("hidden");
+
+    document.getElementById("confirm-yes").onclick = function() {
+        tasks = [];
+        renderTasks();
+        modal.classList.add("hidden");
+    };
+    document.getElementById("confirm-no").onclick = function() {
+        modal.classList.add("hidden");
+    };
 }
 
 function toggleFilterMenu(){
@@ -70,13 +85,13 @@ function filterTasks(type){
 
 function completeTask(index){
     tasks[index].completed = true;
-    console.log("Task completed:", tasks[index].title);
+    
     renderTasks();
 }
 
 function pendingTask(index){
     tasks[index].completed = false;
-    console.log("Task marked as pending:", tasks[index].title);
+    
     renderTasks();
 }
 
@@ -93,18 +108,18 @@ function renderTasks(){
 
     filteredTasks.forEach((task, index) => {
         const realIndex = tasks.indexOf(task);
-        console.log(`Rendering task at index ${realIndex}:`, task);
+        
         const opacityClass = task.completed ? "opacity-50" : "";
         const titleClass = task.completed ? "line-through" : "";
         taskList.innerHTML += `
         <li class="todo-item flex justify-between items-center p-4 border-b-1 ${opacityClass}">
-                    <span class="${titleClass} mr-4">${task.title} - ${task.date} - ${task.completed ? "Completed" : "Pending"}</span>
-                    <div class="flex gap-2">
-                        ${!task.completed ? `<button type="button" class="px-[10px] py-[2px] bg-green-500 hover:bg-green-600 text-white rounded-[4px] text-center" onclick="completeTask(${realIndex})">Complete</button>` : `<button type="button" class="px-[10px] py-[2px] bg-yellow-500 hover:bg-yellow-600 text-white rounded-[4px] text-center" onclick="pendingTask(${realIndex})">Pending</button>`
-    }
-                        <button type="button" class="px-[10px] py-[2px] bg-red-500 hover:bg-red-600 text-white rounded-[4px] text-center" onclick="deleteTask(${realIndex})">Delete</button>
-                    </div>
-                </li>
+            <span class="${titleClass} mr-4">${task.title} - ${task.date} - ${task.completed ? "Completed" : "Pending"}</span>
+            <div class="flex gap-2">
+                ${!task.completed ? `<button type="button" class="px-[10px] py-[2px] bg-green-500 hover:bg-green-600 text-white rounded-[4px] text-center" onclick="completeTask(${realIndex})">Complete</button>` : `<button type="button" class="px-[10px] py-[2px] bg-yellow-500 hover:bg-yellow-600 text-white rounded-[4px] text-center" onclick="pendingTask(${realIndex})">Pending</button>`
+            }
+                <button type="button" class="px-[10px] py-[2px] bg-red-500 hover:bg-red-600 text-white rounded-[4px] text-center" onclick="deleteTask(${realIndex})">Delete</button>
+            </div>
+        </li>
         `;
     });
 
